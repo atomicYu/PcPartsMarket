@@ -1,0 +1,38 @@
+﻿@model PcComponent
+
+<div class="col-sm-4 col-lg-3 col-md-4">
+    <div class="thumbnail partialViewWrapper">
+        <img src="@Model.ImageThumbnailUrl" alt="" style="height:150px;" />
+        <table style="width:100%;height:200px;">
+            <tr>
+                <td>
+                    <h3>
+                        <a asp-controller="PcComponent" asp-action="Details" asp-route-pcComponentId="@Model.PcComponentId">@Model.Name</a>
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td>@Model.ShortDescription</td>
+            </tr>
+            <tr>
+                <td style="text-align:right; vertical-align:bottom;">
+                    <spam class="price">@Model.Price.ToString("c")</spam>
+                    <span class="addToCart button text-right">
+                        <a class="btn btn-success" id="cartButton"
+                           asp-controller="ShoppingCart"
+                           asp-action="AddToShoppingCart"
+                           asp-route-pcComponentId="@Model.PcComponentId">
+                            Add to cart
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+

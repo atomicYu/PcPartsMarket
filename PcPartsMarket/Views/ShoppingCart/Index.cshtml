@@ -1,0 +1,51 @@
+﻿@model ShoppingCartViewModel
+<div class="row checkoutForm">
+    <h2>Your shopping cart</h2>
+    <h4>Here are the components in your shopping cart.</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Selected amount</th>
+                <th>Component</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td class="text-left">@line.PcComponent.Name</td>
+                    <td class="text-right">@line.PcComponent.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.Amount * line.PcComponent.Price).ToString("c"))
+                    </td>
+                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-pcComponentId="@line.PcComponent.PcComponentId"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.ShoppingCartTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="text-right">
+        <div class="btn-group ">
+            @if (Model.ShoppingCartTotal == 0)
+            {
+                <span class="btn btn-warning">Your cart is empty</span>
+            }
+            else
+            {
+                <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+            }
+            <a class="btn btn-default" asp-controller="PcComponent" asp-action="List" asp-route-category="">Add more components</a>
+        </div>
+    </div>
+</div>

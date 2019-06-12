@@ -1,0 +1,30 @@
+﻿@model PcComponent
+<div class="container checkoutForm">
+    <div class="row">       
+        <div class="card">
+            <div class="text-center view overlay hm-white-slight">
+                <img src="@Model.ImageUrl" alt="" style="max-width: 450px;">
+                <a href="#">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+            </div>
+            <div class="card-block">
+                <!--Title class="img-fluid"-->
+                <h4 class="card-title">@Model.Brand @Model.Name</h4>
+                <!--Text-->
+                <p class="card-text">@Model.LongDescription.</p>
+                <div class="card-text">
+                    For more information, click on the
+                    <a href="@Model.InfoLink" target="_blank">link.</a>
+                </div>
+                <p class="btn btn-group pull-right">
+                    <a asp-controller="PcComponent" asp-action="List" class="btn btn-default">Show all components</a>
+                    <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-pcComponentId="@Model.PcComponentId">
+                        Add @Model.Name to cart
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+

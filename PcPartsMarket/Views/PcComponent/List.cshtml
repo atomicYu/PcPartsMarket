@@ -1,0 +1,10 @@
+﻿
+<div class="checkoutForm">
+    <h2>@Model.CurrentCategory</h2>
+    @{
+        foreach (PcComponent pcComponent in Model.PcComponents)
+        {
+            @Html.Partial("PcComponentsSummary", pcComponent)
+        }
+    }
+</div>
